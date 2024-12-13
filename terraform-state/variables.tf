@@ -1,5 +1,5 @@
 variable "s3_module_version" {
-  type = string
+  type        = string
   description = "version of terraform module s3-bucket, https://registry.terraform.io/modules/terraform-aws-modules/s3-bucket/aws/latest"
   validation {
     condition     = can(regex("^[0-9]+\\.[0-9]+\\.[0-9]+$", var.s3_module_version))
@@ -8,7 +8,7 @@ variable "s3_module_version" {
 }
 
 variable "base_bucket_name" {
-  type = string
+  type        = string
   description = "base name of the bucket, preferably includes account id and region"
   validation {
     condition     = can(regex("^[a-z0-9-]+$", var.base_bucket_name))

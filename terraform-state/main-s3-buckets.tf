@@ -1,21 +1,21 @@
 module "main" {
-  source = "terraform-aws-modules/s3-bucket/aws"
+  source  = "terraform-aws-modules/s3-bucket/aws"
   version = "~> 4.2.0"
 
-  bucket = "${var.base_bucket_name}-main"
-  acl    = "private"
+  bucket        = "${var.base_bucket_name}-main"
+  acl           = "private"
   attach_policy = true
-  policy = data.aws_iam_policy_document.main_bucket_policy.json
+  policy        = data.aws_iam_policy_document.main_bucket_policy.json
 
   replication_configuration = {
     role = aws_iam_role.replication.arn
     rules = [
       {
-        id = "${var.base_bucket_name}-replication"
+        id     = "${var.base_bucket_name}-replication"
         status = "Enabled"
 
         destination = {
-          bucket = module.backup.s3_bucket_arn
+          bucket        = module.backup.s3_bucket_arn
           storage_class = "STANDARD"
         }
       }
@@ -30,10 +30,10 @@ module "main" {
 module "backup" {
   source = "terraform-aws-modules/s3-bucket/aws"
 
-  bucket = "${var.base_bucket_name}-backup"
-  acl    = "private"
+  bucket        = "${var.base_bucket_name}-backup"
+  acl           = "private"
   attach_policy = true
-  policy = data.aws_iam_policy_document.main_bucket_policy.json
+  policy        = data.aws_iam_policy_document.main_bucket_policy.json
 
   versioning = {
     enabled = true
