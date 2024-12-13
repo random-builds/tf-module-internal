@@ -33,7 +33,7 @@ module "backup" {
   bucket        = "${var.base_bucket_name}-backup"
   acl           = "private"
   attach_policy = true
-  policy        = data.aws_iam_policy_document.main_bucket_policy.json
+  policy        = data.aws_iam_policy_document.backup_bucket_policy.json
 
   versioning = {
     enabled = true
