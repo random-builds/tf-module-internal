@@ -9,7 +9,7 @@ variable "s3_module_version" {
 
 variable "base_bucket_name" {
   type        = string
-  description = "base name of the bucket, preferably includes account id and region"
+  description = "base name of the bucket, preferably includes account id or some unique identifier"
   validation {
     condition     = can(regex("^[a-z0-9-]+$", var.base_bucket_name))
     error_message = "The base_bucket_name value must be lowercase alphanumeric characters or hyphens."
