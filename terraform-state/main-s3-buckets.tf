@@ -3,7 +3,6 @@ module "main" {
   version = "~> 4.2.0"
 
   bucket        = "${var.base_bucket_name}-main"
-  acl           = "private"
   attach_policy = true
   policy        = data.aws_iam_policy_document.main_bucket_policy.json
 
@@ -31,7 +30,6 @@ module "backup" {
   source = "terraform-aws-modules/s3-bucket/aws"
 
   bucket        = "${var.base_bucket_name}-backup"
-  acl           = "private"
   attach_policy = true
   policy        = data.aws_iam_policy_document.backup_bucket_policy.json
 
