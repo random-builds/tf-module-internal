@@ -10,8 +10,9 @@ module "main" {
     role = aws_iam_role.replication.arn
     rules = [
       {
-        id     = "${var.base_bucket_name}-replication"
-        status = "Enabled"
+        id                        = "${var.base_bucket_name}-replication"
+        status                    = "Enabled"
+        delete_marker_replication = true
 
         destination = {
           bucket        = module.backup.s3_bucket_arn
